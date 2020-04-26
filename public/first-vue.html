@@ -64,18 +64,17 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>City:</strong></div>
-                        <div class="col-md-12"><input v-model="order.city" class="form-control"/>
+                        <div class="col-md-12"><input v-model="order.city" class="form-control"/></div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-md-2">
                             <strong>State:</strong>
                             <select v-model="order.state" class="form-control">
-                            <option value="">State</option>
-                            <option>AL</option>
-                            <option>AR</option>
-                            <option>CA</option>
-                            <option>NV</option>
+                                <option disabled value="">State</option>
+                                <option v-bind:value="order.states.AL">AL</option>
+                                <option v-bind:value="order.states.AR">AR</option>
+                                <option v-bind:value="order.states.CA">CA</option>
+                                <option v-bind:value="order.states.NV">NV</option>
                             </select>
                         </div>
                     </div>
@@ -90,6 +89,8 @@
                             <input type="checkbox"
                                    id="gift"
                                    value="true"
+                                   v-bind:true-value="order.sendGift"
+                                   v-bind:false-value="order.dontSendGift"
                                    v-model="order.gift">
                             <label for="gift">Ship As Gift?</label>
                         </div>
@@ -98,12 +99,12 @@
                         <div class="col-md-6 boxes">
                             <input type="radio"
                                    id="home"
-                                   value="Home"
+                                   v-bind:value="order.home"
                                    v-model="order.method">
                             <label for="home">Home</label>
                             <input type="radio"
                                    id="business"
-                                   value="Business"
+                                   v-bind:value="order.business"
                                    v-model="order.method">
                             <label for="business">Business</label>
                         </div>
@@ -129,7 +130,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         </main>
     </div>
     <script type="text/javascript">
@@ -144,8 +144,18 @@
                   city:'',
                   zip:'',
                   state:'',
-                  method: 'Home',
-                  gift: false
+                  states:{
+                      AL: 'Alabama',
+                      AR: 'Arizona',
+                      CA: 'California',
+                      NV: 'Nevada'
+                  },
+                  method: 'Home adress',
+                    business: 'business address',
+                    home: 'Home address',
+                  gift: '',
+                    sendGift: 'Send As A Gift',
+                    dontSendGift: 'Do not send as a gift'
                 },
                 sitename: "Vue.js Pet Depot",
                 showProduct: true,
