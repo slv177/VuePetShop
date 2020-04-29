@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My counters</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+<script>
+
+    const myComponent= {
+         template: '<div>' +
+             '<button v-on:click="counter -= 1">{{counter}}</button>' +
+             '<button v-on:click="counter += 1">{{counter}}</button>' +
+             '</div>',
+        data(){
+            return {
+                counter: 0
+            }
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        components:{'my-component': myComponent},
+        data(){
+            return{
+                message: ''
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

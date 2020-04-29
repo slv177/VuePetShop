@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My global component</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<div>Hello From GLOBAL Component</div>'
+        });
+
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>

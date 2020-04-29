@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My passed properties</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <my-component :num="myNumber" :str="passedString"
+                  :even="myNumber" :obj="passedObject">
+    </my-component>
+</div>
+<script>
+    const myComponent = {
+        template: '<div>Number: {{num}}<br /> String: {{str}}<br /> Is even?: {{even}}<br /> Object:{{obj.message}}</div>',
+        props: {
+            num:{
+                type: Number,
+                required: true
+            },
+            str:{
+                type: String,
+                default: "Hello world!"
+            },
+            obj:{
+                type: Object,
+                default: ()=> {
+                    return {message: "hello from object"}
+                }
+            },
+            even:{
+                validator: (value) => {
+                    return(value % 2 === 0)
+                }
+            }
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        components:{'my-component': myComponent},
+        data(){
+            return{
+                passedString: "hello from parent!",
+                myNumber: 43,
+                passedObject: {message: 'Passed Object'}
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

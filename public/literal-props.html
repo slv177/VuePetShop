@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My local component</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component ttext="World"></my-component>
+    </div>
+    <script>
+        const myComponent = {
+            template: '<div>Hello {{ttext}}!</div>',
+            props:['ttext']
+        }
+
+        new Vue({
+            el: '#app',
+            components:{'myComponent': myComponent}
+        });
+    </script>
+</body>
+</html>
